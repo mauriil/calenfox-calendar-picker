@@ -1,24 +1,10 @@
+// pages/[id]/[calendarAlias].js
+
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import CalendarAvailability from '../components/CalendarAvailability';
 import ServiceProviderCalendarsView from '../components/ServiceProviderCalendarView';
 
-export default function ServiceProviderCalendars() {
-  const router = useRouter();
-  const { serviceProviderData } = router.query;
-  const [serviceProviderId, setServiceProviderId] = React.useState(null);
-  const [calendarAlias, setCalendarAlias] = React.useState(null);
-
-  React.useEffect(() => {
-    if (serviceProviderData === undefined) {
-      return;
-    }
-    const [serviceProviderId, calendarAlias] = serviceProviderData;
-    setServiceProviderId(serviceProviderId);
-    setCalendarAlias(calendarAlias);
-
-  }, [serviceProviderData]);
-
+export default function ServiceProviderCalendars({ serviceProviderId, calendarAlias }) {
   return (
     calendarAlias === undefined ? (
       <ServiceProviderCalendarsView serviceProviderId={serviceProviderId} />
@@ -26,4 +12,28 @@ export default function ServiceProviderCalendars() {
       <CalendarAvailability serviceProviderId={serviceProviderId} calendarAlias={calendarAlias} />
     )
   );
+}
+
+export async function getStaticPaths() {
+  const paths = await generateStaticPaths();
+  return {
+    paths,
+    fallback: false
+  };
+}
+
+export async function generateStaticPaths() {
+  return [
+    {
+      params: {
+        id: '1'
+      }
+    },
+    {
+      params: {
+        id: '2',
+        calendarAlias: 'alias-del-calendario-1'
+      }
+    }
+  ];
 }
