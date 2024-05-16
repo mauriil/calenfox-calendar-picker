@@ -1,14 +1,11 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Copyright from '../../src/Copyright';
-import { useRouter } from 'next/router';
-import CalendarList from '../../components/CalendarsList';
+import Copyright from '../src/Copyright';
+import CalendarList from './CalendarsList';
 import { Card, CardContent, Fade, Typography } from '@mui/material';
 
-export default function ServiceProviderCalendars() {
-  const router = useRouter();
-  const { serviceProviderId } = router.query;
+export default function ServiceProviderCalendarView({ serviceProviderId }) {
 
   const [serviceProvider, setServiceProvider] = React.useState({
     id: null,

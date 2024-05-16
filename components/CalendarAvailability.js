@@ -1,14 +1,12 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Copyright from '../../../../src/Copyright';
+import Copyright from '../src/Copyright';
 import { useRouter } from 'next/router';
 import { Button, Card, CardContent, Fade, Typography } from '@mui/material';
-import DateTimePicker from '../../../../components/common/DateTimePicker/DateTimePicker';
+import DateTimePicker from './common/DateTimePicker/DateTimePicker';
 
-export default function CalendarAvailability() {
-  const router = useRouter();
-  const { serviceProviderId, calendarAlias } = router.query;
+export default function CalendarAvailability({ serviceProviderId, calendarAlias }) {
   const [dateTime, setDateTime] = React.useState('');
 
   const [serviceProvider, setServiceProvider] = React.useState({
