@@ -33,7 +33,7 @@ const CalendarList = ({ calendars, serviceProviderAlias }) => {
                                 overflow: 'hidden',
                                 textOverflow: 'ellipsis',
                             }} />
-                        <div onClick={() => router.push(`/${serviceProviderAlias}/${calendar.alias}`)} key={index}>
+                        <div onClick={() => router.push(`/sp/${serviceProviderAlias}/c/${calendar.alias}`)} key={index}>
                             <CardContent>
                                 <Typography variant="body2" sx={{ textAlign: 'center', mb: 1 }}>
                                     {calendar.description.length > 0 &&

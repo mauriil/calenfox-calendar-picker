@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Copyright from '../../src/Copyright';
+import Copyright from '../../../../src/Copyright';
 import { useRouter } from 'next/router';
 import { Button, Card, CardContent, Fade, Typography } from '@mui/material';
-import DateTimePicker from '../../components/common/DateTimePicker/DateTimePicker';
+import DateTimePicker from '../../../../components/common/DateTimePicker/DateTimePicker';
 
 export default function CalendarAvailability() {
   const router = useRouter();

@@ -4,6 +4,7 @@ export default function Index() {
 
   React.useEffect(() => {
     // redirect to calenfox landing page
-    window.location.href = '/serviceProviderId2';
+    console.log("🚀 ~ React.useEffect ~ redirect to calenfox landing page:")
+    //window.location.href = '/serviceProviderId2';
   }, []);
 }
