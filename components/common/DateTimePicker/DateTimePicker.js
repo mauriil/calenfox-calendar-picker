@@ -4,12 +4,14 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 
-const DateTimePicker = ({ value, calendarAvailability, onChange }) => {
+const DateTimePicker = ({ value, calendarAvailability, onChange, parametersComplete }) => {
     const [dayTimeSelected, setDayTimeSelected] = React.useState(new Date());
-    const [hourAndMinute, setHourAndMinute] = React.useState('08:00');
+    const [hourAndMinute, setHourAndMinute] = React.useState('');
     const [hoursAvailable, setHoursAvailable] = React.useState([]);
 
     const onDayChange = (value) => {
+        parametersComplete(false);
+        setHourAndMinute('');
         setDayTimeSelected(value);
         onChange(value);
         const dateString = value.toISOString().split('T')[0];
@@ -29,6 +31,7 @@ const DateTimePicker = ({ value, calendarAvailability, onChange }) => {
         newDateTime.setHours(hour);
         newDateTime.setMinutes(minute);
         onChange(newDateTime);
+        parametersComplete(true);
     }
 
     return (
@@ -45,20 +48,23 @@ const DateTimePicker = ({ value, calendarAvailability, onChange }) => {
                 }}
             />
 
-            <FormControl variant="outlined" fullWidth sx={{ my: 2 }}>
-                <InputLabel id="horario">Horario</InputLabel>
-                <Select
-                    labelId="horario"
-                    id="horario"
-                    value={hourAndMinute}
-                    onChange={handleIntervalChange}
-                    label="Horario"
-                >
-                    {hoursAvailable.map((hour, index) => (
-                        <MenuItem key={index} value={hour}>{`${hour}`}</MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+            {hoursAvailable.length > 0 &&
+                <FormControl variant="outlined" fullWidth sx={{ mt: 2 }}>
+                    <InputLabel id="horario">Horario</InputLabel>
+                    <Select
+                        labelId="horario"
+                        id="horario"
+                        value={hourAndMinute}
+                        onChange={handleIntervalChange}
+                        label="Horario"
+                    >
+                        {hoursAvailable.map((hour, index) => (
+                            <MenuItem key={index} value={hour}>{`${hour}`}</MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            }
+
         </Box>
     );
 }
